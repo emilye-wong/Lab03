@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Age Calculator</title>
+        
     </head>
     <body>
         <h1>Age Calculator</h1>
@@ -21,7 +22,7 @@
             <br>
             <div>${message}</div>
             <div>${newAge}</div>
-            <a href="arithmatic">Arithmetic Calculator</a>
+            <a href="arithmetic">Arithmetic Calculator</a>
         </form>
     </body>
 </html>
