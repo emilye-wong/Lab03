@@ -31,10 +31,6 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         // getting the parameters from the JSP
         String firstNum = request.getParameter("firstNum");
         String secondNum = request.getParameter("secondNum");
-        String add = request.getParameter("add");
-        String minus = request.getParameter("minus");
-        String multiply = request.getParameter("multiply");
-        String divide = request.getParameter("divide");
 
         if (firstNum == null || firstNum.equals("") || secondNum == null || secondNum.equals("")) {
             request.setAttribute("result", "Invalid");
@@ -42,11 +38,15 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
 
             return;
         }
-
+        
+        String add = request.getParameter("add");
+        String minus = request.getParameter("minus");
+        String multiply = request.getParameter("multiply");
+        String divide = request.getParameter("divide");
         // parsing into ints
         int num1 = Integer.parseInt(firstNum);
         int num2 = Integer.parseInt(secondNum);
-        int result = 0;
+        double result = 0;
 
         if (add != null) {
             result = num1 + num2;
@@ -58,7 +58,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
             result = num1 / num2;
         }
         request.setAttribute("result", result);
-        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
+       
     }
 
 }
