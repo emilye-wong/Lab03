@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author emily
- */
 public class ArithmeticCalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("result", "---");
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
     }
 
@@ -32,13 +23,17 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         String firstNum = request.getParameter("firstNum");
         String secondNum = request.getParameter("secondNum");
 
+        request.setAttribute("firstNum", firstNum);
+        request.setAttribute("secondNum", secondNum);
+        
+        try {
         if (firstNum == null || firstNum.equals("") || secondNum == null || secondNum.equals("")) {
             request.setAttribute("result", "Invalid");
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
 
             return;
         }
-        
+
         String add = request.getParameter("add");
         String minus = request.getParameter("minus");
         String multiply = request.getParameter("multiply");
@@ -58,7 +53,12 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
             result = num1 / num2;
         }
         request.setAttribute("result", result);
-       
-    }
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
+        
+         } catch (NumberFormatException e) {
+               request.setAttribute("result", "Invalid");
 
+            getServletContext().getRequestDispatcher("/WEB-INF/arithmeticCalculator.jsp").forward(request, response);
+        }
+    }
 }
