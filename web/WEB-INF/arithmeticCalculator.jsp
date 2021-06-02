@@ -23,7 +23,7 @@
             <input type="submit" name="add" value="+"></input>
             <input type="submit" name="minus" value="-"></input>
             <input type="submit" name="multiply" value="*"></input>
-            <input type="submit" name="divide" value="%"></input>
+            <input type="submit" name="remainder" value="%"></input>
             <br>
             <div>Result: ${result}</div>
             <a href="age">Age Calculator</a>
